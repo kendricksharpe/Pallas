@@ -6,6 +6,7 @@
 
 import random
 from twilio.rest import Client #You can comment this out if you don't have twilio installed
+import time
 
 # Your Account SID from twilio.com/console
 account_sid = ""
@@ -33,8 +34,16 @@ def send_text(quote):
         from_="", #replace with twilio number
         body=quote)
 
-if __name__ == "__main__":
+def randomly_send_a_text_between_now_and_7_hours():
+    seven_hours = 25200
     QUOTES = load_quote_array()
     quote = random_selection(QUOTES)
     print("-=+=-\n\n" + quote + "\n\n-+-\n")
+    randtime = random.randrange(0, seven_hours)
+    time.sleep(randtime)
+    print("SENT")
     send_text(quote)
+    randomly_send_a_text_between_now_and_7_hours()
+
+if __name__ == "__main__":
+    randomly_send_a_text_between_now_and_7_hours()
